@@ -39,21 +39,22 @@
     "5": "Region 5: High/Interior Desert",
     "6": "Region 6: Low Desert"
   },
-  "wucols_water_use": [
-    "Very Low",
-    "Low",
-    "Moderate",
-    "High",
-    "Not Appropriate for Region"
-  ],
+  "wucols_water_use": {
+    "Very Low": "very low (<10% ET0)",
+    "Low": "low (10-30% ET0)",
+    "Moderate": "moderate (40-60% ET0)",
+    "High": "high (40=60% ET0)",
+    "Not Appropriate": "not appropriate for this region",
+    "Unknown": "unknown"
+  },
   "tol_conditions": [
     "drought",
     "heat",
     "poor soil",
     "salt air",
     "wind",
-    "coastal_drought",
-    "dry_shade",
+    "coastal drought",
+    "dry shade",
     "clay soil",
     "container",
     "deer"
