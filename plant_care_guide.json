@@ -38,9 +38,9 @@
    "fertilizer_schedule": ""
  },
  {
-   "botanical_name": " ",
+   "botanical_name": "Aesculus californica",
    "common_name": "California buckeye;California horse chestnut",
-   "plant_id": "_",
+   "plant_id": "aesculus_californica",
    "plant_type": "Tree;California Native;Summer Deciduous;Winter Deciduous",
    "notes": "ALL PARTS ARE TOXIC. ",
    "light_req": "pref_full_sun;pref_partial_shade",
