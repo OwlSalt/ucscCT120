@@ -1,8 +1,7 @@
 {
-    "plant_type": [
+    "plant_type": [ 
     "Annual",
-    "Arboretum All-Star (WUCOLS)", // listed in WUCOLS_all_regions data as 'Arboretum All-Star'
-    "Bamboo",
+    "Arboretum All-Star (WUCOLS)", 
     "Bulb",
     "California Native",
     "Ground Cover",
@@ -25,7 +24,6 @@
     "pref_filtered_sun": "filtered sunlight",
     "pref_partial_shade": "partial shade (4-6 hrs. direct sun, mostly before midday)",
     "pref_full_shade": "best in full shade (4 hrs. or less direct sun)",
-    // tolerates
     "tol_full_sun": "tolerates full sun (6+ hrs. direct sun)",
     "tol_partial_sun": "tolerates partial sun (4-6 hrs. direct sun, including afternoon sun)",
     "tol_filtered_sun": "tolerates filtered sunlight",
@@ -122,5 +120,5 @@
     "IPM control",
     "mulch",
     "inspect"
-  ],
+  ]
 }
