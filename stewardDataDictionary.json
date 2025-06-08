@@ -83,7 +83,7 @@
     "Oct_int": "intermittently in October",
     "Nov_int": "intermittently in November",
     "Dec_int": "intermittently in December"
-  }
+  },
   "pruning_season": {
     "Jan": "January",
     "Feb": "February",
@@ -109,7 +109,7 @@
     "Fall_early": "early fall",
     "Fall": "fall",
     "Fall_late": "late fall"
-  }
+  },
     "task_type": [
     "water",
     "prune",
