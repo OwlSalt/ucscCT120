@@ -62,7 +62,106 @@ li {
     color: var(--main-compost-color);
     font-weight: bold;    
 }
-button {
+.select-region {
+    margin-top: 3rem;
+    position: relative;
+    display: inline-block;
+    width: max-content;
+    max-width: 95%;
+}
+.region-button {
+    font-size: 15px;
+    color: var(--main-blanch-color);
+    letter-spacing: 0.75px;
+    font-weight: bold;
+    word-wrap: break-word;
+    word-break: keep-all;
+    text-shadow: 1px 1px 2px var(--main-soil-color), 0 0 5px var(--main-soil-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.7em 1em;
+    border: 1px solid var(--main-green-color);
+    border-radius: 0.25rem;
+    background-color: var(--main-compost-color);
+    cursor: pointer;
+}
+.arrow {
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 8px solid var(--main-green-color);
+    transition: transform ease-in-out 0.3s;
+}
+.region-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid var(--main-blanch-color);
+    border-radius: 0.25rem;
+    background-color:var(--main-soil-color);
+    list-style: none;
+    padding: 10px;
+    margin: 10px 0 0;
+    box-shadow: 0 10px 25px var(--main-green-color);
+    max-height: 200px;
+    overflow-y: auto;
+}
+.region-dropdown::-webkit-scrollbar {
+    width: 7px;
+}
+.region-dropdown::-webkit-scrollbar-track {
+    background: var(--main-green-color);
+    border-radius: 25px;
+}
+.region-dropdown::-webkit-scrollbar-thumb {
+    background: var(--main-melon-color);
+    border-radius: 25px;
+}
+.region-dropdown li {
+    padding: 10px;
+    font-size: small;
+    font-weight: normal;
+    color: var(--main-blanch-color);
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+/* Highlight selected option */
+.region-dropdown li.selected {
+    background-color: var(--main-melon-color);
+    border-radius: 4px;
+    font-weight: bold;
+}
+.region-dropdown li:hover,
+.region-dropdown li:focus {
+    background-color: var(--main-melon-color);
+    border-radius: 4px;
+}
+.region-dropdown.hidden {
+    display:none;
+}
+.select-button[aria-expanded="true"] .arrow {
+    transform: rotate(180deg);
+}
+/*============= Reset =========================*/
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-size: 15px;
+  color: var(--main-blanch-color);
+  display: grid;
+  place-items: center;
+}
+/*============= Functional Task Buttons =========================*/
+.button {
     margin: auto;
     max-width: 85%;
     background-color: var(--main-green-color); /* MELON RIND */
