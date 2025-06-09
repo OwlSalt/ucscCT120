@@ -1,0 +1,58 @@
+[
+    {
+    "instance_id": "front_walk_feijoas01-06",
+    "plant_id": "acca_sellowiana",
+    "location": "Front Walkway",
+    "nickname": "Feijoas (6) at Front Entry",
+    "date_planted": "2023-11-12"
+    },
+    {
+    "instance_id": "fence_west_lemonade-berries01-03",
+    "plant_id": "rhus_integrifolia",
+    "location": "West Fenceline",
+    "nickname": "Lemonade Berries (4) at W Fence",
+    "date_planted": "2017-10-14"
+    },
+    {
+    "instance_id": "potted_coast-live-oak01",
+    "plant_id": "quercus_agrifolia",
+    "location": "Front Walkway",
+    "nickname": "Coast Live Oak in Red Pot",
+    "date_planted": "2020-06-12"
+    },
+    {
+    "instance_id": "studio_flannel-bush01",
+    "plant_id": "fremontodendron_californicum",
+    "location": "Studio Courtyard",
+    "nickname": "Flannel Bush at Courtyard, South Wall",
+    "date_planted": "2008-08-02"
+    },
+    {
+    "instance_id": "rain-garden_wild-ginger01-05",
+    "plant_id": "asarum_caudatum",
+    "location": "Rain Garden",
+    "nickname": "Wild Ginger at Rain Garden",
+    "date_planted": "2017-04-19"
+    },
+    {
+    "instance_id": "",
+    "plant_id": "",
+    "location": "",
+    "nickname": "",
+    "date_planted": "2020-06-12"
+    },
+    {
+    "instance_id": "",
+    "plant_id": "",
+    "location": "",
+    "nickname": "",
+    "date_planted": "2020-06-12"
+    },
+    {
+    "instance_id": "",
+    "plant_id": "",
+    "location": "",
+    "nickname": "",
+    "date_planted": "2020-06-12"
+    }
+]
