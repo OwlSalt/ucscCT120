@@ -11,20 +11,45 @@
     <h2>plant communicator tool</h2>
     <h3>Let's grow!</h3>
 
+    <!-- Custom Dropdown Structure -->
+    <div class="select-region">
+        <button id="dropdown-button"
+            class="region-button"
+            role="combobox"
+            aria-label="region-button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="region-dropdown"
+            >
+            <span class="selected-value">FIRST: Select WUCOLS Region</span>
+            <span class="arrow"></span>
+    </button>
+    <ul class="region-dropdown hidden"
+        role="listbox"
+        id="region-dropdown"
+        aria-labelledby="dropdown-button"
+    >
+        <li role="option">Region 1:</li>
+        <li role="option">Region 2:</li>
+        <li role="option">Region 3:</li>
+        <li role="option">Region 4:</li>
+        <li role="option">Region 5:</li>
+        <li role="option">Region 6:</li>
+        <!-- clear option to reset selection value -->
+         <li role="option" data-value="clear">
+            <span>Clear selection</span>
+         </li>
+    </ul>
+</div>  
+
     <label for="plant-selector">Select a plant:</label>
     <select id="plant-selector"></select>
 
-    <div class="region-selector">
-        <button class="dropbtn">FIRST: Select WUCOLS Region</button>
-        <div class="dropdown-content">
-            
-
-        </div>
-        
-        <!--care info will go here-->
-    </div>
-
     <script src="app.js"></script>
+
+
+
+
     <p>Suggested garden care tasks:</p>
     <li>water</li>
     <li>water</li>
