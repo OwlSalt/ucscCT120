@@ -1,4 +1,4 @@
-let inventory - [];
+let inventory = [];
 let careGuides = [];
 let regionWUCOLS = [];
 
@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     populatePlantSelector();
 });
 // selector drop-down for WUCOLS Region
-function selectRegionWUCOLS();
-    const 
+
+ 
 
 // populate in dropdown selector
 function populatePlantSelector() {
@@ -34,8 +34,4 @@ function showPlantInfo() {
     const guide = careGuides.find(g => g.plant_id === instance.plant_id);
 
     const infoDiv = document.getElementById("plant-info");
-    infoDiv.innerHTML = 
-    <h3>${guide.common_name} (${guide.botanical_name})</h3>
-    <p>Light Needs:<br> ${guide.light_requirements.join(", ")} </p>
-    <p>Water Needs:<br> $guide. </p>
 }
