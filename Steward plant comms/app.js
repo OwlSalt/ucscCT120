@@ -31,24 +31,23 @@ function populatePlantSelector() {
     const select = document.getElementById("plant-selector");
     
     // Clear existing options first
-    dropdown.innerHTML = '';
+    select.innerHTML = '';
 
     // option to clear and reselect a different plant
-    const clearOption = document.createElement("pl");
+    const clearOption = document.createElement("li");
     clearOption.setAttribute("role","option");
     clearOption.setAttribute("data-value","");
     clearOption.textContent = " ~ Select a Plant ~ ";
+    const dropdown = document.getElementById("plant-dropdown");
     dropdown.appendChild(clearOption);
+    dropdown.appendChild(option);
     
     inventory.forEach(plant => {
-        const option = document.createElement("pl");
+        const option = document.createElement("li");
         option.setAttribute("role","option");
         option.setAttribute("data-value", plant.instance_id);
         option.textContent = plant.nickname || plant.instance_id;
-        select.appendChild(option);
     });
-
-   setupPlantDropdown();
 }
 
 // Show care info
@@ -88,6 +87,23 @@ function showPlantInfo() {
         <p><strong>Notes:</strong> ${guide.notes || "N/A"}</p>
     `;
 }
+// Setup Plant Inventory dropdown -- based on WUCOLS region 
+function setupPlantDropdown() {
+    const selectInv = document.querySelectorAll(".select-plant");
+    selectInv.forEach((selectInv) => {
+        const selectInvButton = selectInv.querySelector(".plant-button");
+        const dropdownInv = selectInv.querySelector(".plant-dropdown");
+        const optionInv = dropdownInv.querySelectorAll("li");
+        const selectedPlant = selectInvButton.querySelector(".selected-value");
+        
+        let focusedInvIndex = -1;
+
+        const toggleInvDropdown = (expand = null) => {
+            
+        }
+    })
+}
+
 
 // Setup WUCOLS region dropdown -- FIX for logic errors
 function setupRegionDropdowns() {
@@ -95,7 +111,7 @@ function setupRegionDropdowns() {
     selectRegions.forEach((selectRegion) => {
         const selectButton = selectRegion.querySelector(".region-button");
         const dropdown = selectRegion.querySelector(".region-dropdown");
-        const options = dropdown.querySelectorAll("pl");
+        const options = dropdown.querySelectorAll("li");
         const selectedValue = selectButton.querySelector(".selected-value");
 
         let focusedIndex = -1;
