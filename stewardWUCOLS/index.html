@@ -7,6 +7,38 @@
     <title>Steward Test: WUCOLS Selector</title>
 </head>
 <body>
-    
+    <h1>Steward</h1>
+    <h2>Plant Communicator Tool</h2>
+    <h3>Let's grow!</h3>
+    <p id="selected-region-display"></p>
+
+    <!-- Custom Dropdown Structure -->
+    <div class="select-region">
+        <button id="dropdown-button"
+            class="region-button"
+            role="combobox"
+            aria-label="region-button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="region-dropdown"
+            >
+            <span class="selected-value">FIRST: Select WUCOLS Region</span>
+            <span class="arrow"></span>
+            </button>
+    <ul class="region-dropdown hidden"
+        role="listbox"
+        id="region-dropdown"
+        aria-labelledby="dropdown-button">
+        <li role="option" data-value="1">Region 1:</li>
+        <li role="option" data-value="2">Region 2:</li>
+        <li role="option" data-value="3">Region 3:</li>
+        <li role="option" data-value="4">Region 4:</li>
+        <li role="option" data-value="5">Region 5:</li>
+        <li role="option" data-value="6">Region 6:</li>
+        <!-- clear option to reset selection value -->
+         <li role="option" data-value="clear"><span>Clear selection</span>
+         </li>
+    </ul>
+</div>  
 </body>
 </html>
