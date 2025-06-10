@@ -122,22 +122,31 @@ li {
     display: flex ;
     gap: 0.5rem;
     align-items: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
 }
 /* Highlight selected option */
 .region-dropdown li.selected {
     background-color: var(--main-green-color);
-    border-radius: 4px;
+    color: var(--main-blanch-color);
     font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
 }
 .region-dropdown li:hover,
 .region-dropdown li:focus {
     background-color: var(--main-soil-color);
     border-radius: 4px;
 }
-.select.dropdown.hidden {
+.region-dropdown li.selected:hover,
+.region-dropdown li.selected:focus {
+    background-color: var(--main-green-color);
+    color: var(--main-blanch-color);
+}
+.region-dropdown.hidden {
     display: none;
 }
-.select-button[aria-expanded="true"] .arrow {
+.region-button[aria-expanded="true"] .arrow {
     transform: rotate(180deg);
 }
 /*============= Reset =========================*/
@@ -149,9 +158,99 @@ li {
     margin-top: auto;
     margin-bottom: auto;
     text-align: left;
- 
 }
 
+.select-plant {
+    margin-top: 3rem;
+    position: relative;
+    display: inline-block;
+    width: max-content;
+    max-width: 95%;
+}
+.plant-button {
+    font-size: medium;
+    color: var(--main-compost-color);
+    letter-spacing: 0.75px;
+    font-weight: bold;
+    word-wrap: break-word;
+    word-break: keep-all;
+    text-shadow: 1px 1px 2px var(--main-blanch-color), 0 0 5px var(--main-compost-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.7em 1em;
+    border: 1px solid var(--main-green-color);
+    cursor: pointer;
+}
+.plant-button .arrow {
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 8px solid var(--main-compost-color); 
+    transition: transform ease-in-out 0.3s;
+    margin-left: 10px;
+}
+.plant-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 12px;
+    width: 100%;
+    border: 1px solid var(--main-green-color);
+    border-radius: 0.25rem;
+    background-color: var(--main-blanch-color);
+    list-style: none;
+    padding: 10px;
+    margin: 10px 0 0;
+    box-shadow: 0 10px 15px var(--main-soil-color);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+.plant-dropdown::-webkit-scrollbar {
+    width: 7px;
+}
+.plant-dropdown::-webkit-scrollbar-track {
+    background: var(--main-soil-color);
+    border-radius: 25px;
+}
+.plant-dropdown::-webkit-scrollbar-thumb {
+    background: var(--main-melon-color);
+    border-radius: 25px;
+}
+.plant-dropdown li {
+    padding: 10px;
+    font-size: small;
+    font-weight: normal;
+    color: var(--main-blanch-color);
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+.plant-dropdown li.selected {
+    background-color: var(--main-melon-color);
+    color: var(--main-blanch-color);
+    font-weight: bold;
+    border-radius: 4px;
+}
+.plant-dropdown li:hover,
+.plant-dropdown li:focus {
+    background-color: var(--main-soil-color);
+    border-radius: 4px;
+}
+.plant-dropdown li.selected:hover,
+.plant-dropdown li.selected:focus {
+    background-color: var(--main-melon-color);
+    color: var(--main-blanch-color);
+}
+.plant-dropdown.hidden {
+    display: none;
+}
+.plant-button[aria-expanded="true"] .arrow {
+    transform: rotate(180deg);
+}
 /*============= Functional Task Buttons =========================*/
 .button {
     margin: auto;
@@ -173,4 +272,14 @@ li {
 }
 .center {
     text-align: center;
+}
+.label {
+    background-color: var(--main-blanch-color);
+    text-align: left;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--main-soil-color);
+    box-sizing: border-box;
+    font-size:larger;
+    font-weight:bold;
+    max-width: 100%;  
 }

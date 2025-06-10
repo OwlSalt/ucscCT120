@@ -10,6 +10,7 @@
     <h1>Steward</h1> 
     <h2>plant communicator tool</h2>
     <h3>Let's grow!</h3>
+    <p id="selected-region-display"></p>
 
     <!-- Custom Dropdown Structure -->
     <div class="select-region">
@@ -23,39 +24,43 @@
             >
             <span class="selected-value">FIRST: Select WUCOLS Region</span>
             <span class="arrow"></span>
-    </button>
+            </button>
     <ul class="region-dropdown hidden"
         role="listbox"
         id="region-dropdown"
-        aria-labelledby="dropdown-button"
-    >
-        <li role="option">Region 1:</li>
-        <li role="option">Region 2:</li>
-        <li role="option">Region 3:</li>
-        <li role="option">Region 4:</li>
-        <li role="option">Region 5:</li>
-        <li role="option">Region 6:</li>
+        aria-labelledby="dropdown-button">
+        <li role="option" data-value="1">Region 1:</li>
+        <li role="option" data-value="2">Region 2:</li>
+        <li role="option" data-value="3">Region 3:</li>
+        <li role="option" data-value="4">Region 4:</li>
+        <li role="option" data-value="5">Region 5:</li>
+        <li role="option" data-value="6">Region 6:</li>
         <!-- clear option to reset selection value -->
-         <li role="option" data-value="clear">
-            <span>Clear selection</span>
+         <li role="option" data-value="clear"><span>Clear selection</span>
          </li>
     </ul>
 </div>  
 <br><br>
-    <label for="plant-selector">Select a plant:</label>
-    <select id="plant-selector"></select>
+<div class="select-plant">
+    <button id="plant-dropdown-button"
+        class="button plant-button"
+        role="combobox"
+        aria-label="plant-button"
+        aria-haspopup="listbox"
+        aria-expanded="false"
+        aria-controls="plant-dropdown"
+        >
+        <span class="selected-value"> ~Select a plant ~</span>
+        <span class="arrow"></span>
+        </button>
+    <ul class="plant-dropdown hidden"
+        role="listbox"
+        id="plant-dropdown"
+        aria-labelledby="plant-dropdown-button">
+    </ul>
 
-    <script src="app.js"></script>
-
-
-
-
-    <p>Suggested garden care tasks:</p>
-    <li>water</li>
-    <li>water</li>
-    <li>water</li>
-    <li>water</li>
-    <br>
-    <button>Here's a button</button>
+</div>
+<div id="plant-info"></div>
+<script src="app.js"></script>
 </body>
 </html>
