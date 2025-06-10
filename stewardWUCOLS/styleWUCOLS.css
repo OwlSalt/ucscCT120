@@ -1,0 +1,157 @@
+:root {
+    --main-blanch-color: #ffebcd; /* ALMOND BLANCH */
+    --main-melon-color: #d6582e; /* MELON FLESH */
+    --main-green-color: #94a00e; /* MELON RINDS */
+    --main-soil-color: #5e3b22; /* ALMOND SKINS */
+    --main-compost-color: #3f2d1c; /* RICH COMPOST */
+}
+main {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: 12px;
+    margin-bottom: auto;
+    text-align: left;
+    color: var(--main-soil-color);
+}
+body {
+    background-color: var(--main-blanch-color);
+    text-align: left;
+    color: var(--main-soil-color);
+    box-sizing: border-box;
+    font-weight:bold;
+    max-width: 100%;
+}
+h1 {
+    font-family:cursive;
+    font-size-adjust: calc(0.75);
+    text-align: center;
+    font-weight: bolder;
+    color: var(--main-melon-color);
+    text-shadow: .4px .4px 3px whitesmoke, 0 0 50px var(--main-blanch-color), 2px 2px 13px var(--main-green-color), 0 0 4px var(--main-blanch-color), 6px 8px 14px var(--main-soil-color);
+}
+h2 {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    text-transform:capitalize;
+    color: var(--main-green-color);
+}
+h3 {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--main-soil-color);
+    font-weight: bold;
+}
+p {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--main-soil-color);
+    font-weight: bold;   
+}
+li {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--main-compost-color);
+    font-weight: bold;    
+}
+.select-region {
+    margin-top: 3rem;
+    position: relative;
+    display: inline-block;
+    width: max-content;
+    max-width: 95%;
+}
+.region-button {
+    font-size: 15px;
+    color: var(--main-blanch-color);
+    letter-spacing: 0.75px;
+    font-weight: bold;
+    word-wrap: break-word;
+    word-break: keep-all;
+    text-shadow: 1px 1px 2px var(--main-soil-color), 0 0 5px var(--main-soil-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.7em 1em;
+    border: 1px solid var(--main-green-color);
+    border-radius: 0.25rem;
+    background-color: var(--main-compost-color);
+    cursor: pointer;
+}
+.arrow {
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 8px solid var(--main-green-color);
+    transition: transform ease-in-out 0.3s;
+}
+.region-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 12px;
+    width: 100%;
+    border: 1px solid var(--main-blanch-color);
+    border-radius: 0.25rem;
+    background-color:var(--main-compost-color);
+    list-style: none;
+    padding: 10px;
+    margin: 10px 0 0;
+    box-shadow: 0 10px 15px var(--main-soil-color);
+    max-height: 200px;
+    overflow-y: auto;
+}
+.region-dropdown::-webkit-scrollbar {
+    width: 7px;
+}
+.region-dropdown::-webkit-scrollbar-track {
+    background: var(--main-blanch-color);
+    border-radius: 25px;
+}
+.region-dropdown::-webkit-scrollbar-thumb {
+    background: var(--main-melon-color);
+    border-radius: 25px;
+}
+.region-dropdown li {
+    padding: 10px;
+    font-size: small;
+    font-weight: normal;
+    color: var(--main-blanch-color);
+    cursor: pointer;
+    display: flex ;
+    gap: 0.5rem;
+    align-items: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+/* Highlight selected option */
+.region-dropdown li.selected {
+    background-color: var(--main-green-color);
+    color: var(--main-blanch-color);
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+.region-dropdown li:hover,
+.region-dropdown li:focus {
+    background-color: var(--main-soil-color);
+    border-radius: 4px;
+}
+.region-dropdown li.selected:hover,
+.region-dropdown li.selected:focus {
+    background-color: var(--main-green-color);
+    color: var(--main-blanch-color);
+}
+.region-dropdown.hidden {
+    display: none;
+}
+.region-button[aria-expanded="true"] .arrow {
+    transform: rotate(180deg);
+}
+/*============= Reset =========================*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: left;
+}
