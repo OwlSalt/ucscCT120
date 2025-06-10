@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error loading data:", error); // console log notice error
         };
     });
-// Setup WUCOLS region dropdown -- FIX for logic errors
+// Setup WUCOLS region dropdown -- FIXED the logic errors
 function setupRegionDropdowns() {
     const selectRegions = document.querySelectorAll(".select-region");
     selectRegions.forEach((selectRegion) => {
