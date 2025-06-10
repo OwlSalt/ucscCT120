@@ -6,13 +6,13 @@
     --main-green-color: #94a00e; /* MELON RINDS */
     --main-soil-color: #5e3b22; /* ALMOND SKINS */
     --main-compost-color: #3f2d1c; /* RICH COMPOST */
+}
+main {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-left: 12px;
     margin-right: 12px;
     margin-top: 10px;
     margin-bottom: auto;
-}
-main {
     text-align: left;
     color: var(--main-soil-color);
 }
@@ -25,11 +25,9 @@ body {
     font-weight:bold;
     max-width: 100%;
 }
-
 h1 {
     font-family:cursive;
-    font-size-adjust: calc(.8);
-    line-height: 0.97;
+    font-size-adjust: calc(0.75);
     text-align: center;
     font-weight: bolder;
     color: var(--main-melon-color);
@@ -37,28 +35,24 @@ h1 {
 }
 h2 {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    line-height: 0.9;
     font-weight: bold;
+    font-size:smaller;
     text-align: center;
     text-transform:capitalize;
     color: var(--main-green-color);
 }
 h3 {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size-adjust: calc(0.7);
     color: var(--main-soil-color);
     font-weight: bold;
 }
 p {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size-adjust: calc(0.7);
     color: var(--main-soil-color);
     font-weight: bold;   
 }
 li {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size-adjust: calc(0.7);
-    line-height: 1.5;
     color: var(--main-compost-color);
     font-weight: bold;    
 }
@@ -96,15 +90,15 @@ li {
 .region-dropdown {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 12px;
     width: 100%;
     border: 1px solid var(--main-blanch-color);
     border-radius: 0.25rem;
-    background-color:var(--main-soil-color);
+    background-color:var(--main-compost-color);
     list-style: none;
     padding: 10px;
     margin: 10px 0 0;
-    box-shadow: 0 10px 25px var(--main-green-color);
+    box-shadow: 0 10px 15px var(--main-soil-color);
     max-height: 200px;
     overflow-y: auto;
 }
@@ -112,7 +106,7 @@ li {
     width: 7px;
 }
 .region-dropdown::-webkit-scrollbar-track {
-    background: var(--main-green-color);
+    background: var(--main-blanch-color);
     border-radius: 25px;
 }
 .region-dropdown::-webkit-scrollbar-thumb {
@@ -125,41 +119,39 @@ li {
     font-weight: normal;
     color: var(--main-blanch-color);
     cursor: pointer;
-    display: flex;
+    display: flex ;
     gap: 0.5rem;
     align-items: center;
 }
 /* Highlight selected option */
 .region-dropdown li.selected {
-    background-color: var(--main-melon-color);
+    background-color: var(--main-green-color);
     border-radius: 4px;
     font-weight: bold;
 }
 .region-dropdown li:hover,
 .region-dropdown li:focus {
-    background-color: var(--main-melon-color);
+    background-color: var(--main-soil-color);
     border-radius: 4px;
 }
-.region-dropdown.hidden {
-    display:none;
+.select.dropdown.hidden {
+    display: none;
 }
 .select-button[aria-expanded="true"] .arrow {
     transform: rotate(180deg);
 }
 /*============= Reset =========================*/
-
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: left;
+ 
 }
 
-body {
-  font-size: 15px;
-  color: var(--main-blanch-color);
-  display: grid;
-  place-items: center;
-}
 /*============= Functional Task Buttons =========================*/
 .button {
     margin: auto;
