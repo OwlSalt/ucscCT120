@@ -161,18 +161,36 @@ function showPlantInfo (instanceId) {
         return info.innerHTML = `<p>No care guide found for ${instanceId}.</p>`;
     }
     // light req csv to array parse
-    const light = guide.light_req
-        ? guide.light_req.split(";").map(s => s.trim())
-        : [];
+    const sun = guide.light_req || "";
+    const light = sun.split(";").map(s => s.trim()).filter(Boolean);
+    // split light req by pref v tol
+    const best = light
+        .filter(l => l.startsWith("pref_"))
+        .map(l => l.replace(/^pref_/,"").replace(/_/g, " "));
+    const tolerates = light
+        .filter(l => l.startsWith("tol_"))
+        .map(l => l.replace(/^tol_/,"").replace(/_/g, " "));
+    let lightCare = "";
+    if (best.length) {
+        lightCare += `Best in ${best.join(", ")}`;
+    }
+    if (tolerates.length) {
+        if(lightCare) lightCare +=", ";
+            lightCare += `tolerates ${tolerates.join(", ")}`;
+    }
+    if (!lightCare) {
+        lightCare = "No light requirement data";
+    }
+
     // pull water use based on regionWUCOLS
-    const waterUse = regionWUCOLS // NEED TO CHECK IF THIS MATCHES WUCOLS water use fields in careguide
+    const waterUse = regionWUCOLS
     ? guide[regionWUCOLS] || "N/A"
     : "Select a region first";
 
     info.innerHTML = `
     <h2>${inst.nickname || inst.instance_id}</h2>
     <p>Botanical: ${guide.botanical_name}</p>
-    <p>Light Req: ${light}</p>
+    <p>Light Req: ${lightCare}</p>
     <p>Water in Region ${regionWUCOLS.slice(-1)}: ${waterUse}</p>
     <p>Notes: ${guide.notes || "no notes"}</p>
     `;
