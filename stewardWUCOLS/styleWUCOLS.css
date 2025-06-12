@@ -1,9 +1,9 @@
 :root {
-    --main-blanch-color: #ffebcd; /* ALMOND BLANCH */
+    --main-blanch-color: #B79f7C; /* #ffebcd ALMOND BLANCH */
     --main-melon-color: #d6582e; /* MELON FLESH */
-    --main-green-color: #94a00e; /* MELON RINDS */
-    --main-soil-color: #5e3b22; /* ALMOND SKINS */
-    --main-compost-color: #3f2d1c; /* RICH COMPOST */
+    --main-green-color: #575e08; /* #94a00e MELON RINDS */
+    --main-soil-color: #784B2B; /* #5e3b22 ALMOND SKINS */
+    --main-compost-color: #382819; /* #3f2d1c RICH COMPOST */
 }
 main {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -61,12 +61,12 @@ li {
 }
 .region-button {
     font-size: 15px;
-    color: var(--main-blanch-color);
+    color: blanchedalmond;
     letter-spacing: 0.75px;
     font-weight: bold;
     word-wrap: break-word;
     word-break: keep-all;
-    text-shadow: 1px 1px 2px var(--main-soil-color), 0 0 5px var(--main-soil-color);
+    /* text-shadow: 1px 1px 2px var(--main-soil-color), 0 0 5px var(--main-soil-color); */
     display: flex;
     justify-content: space-between;
     align-items: center;
