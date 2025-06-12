@@ -1,7 +1,11 @@
+let inventory = [];
+let careGuides = [];
 let regionWUCOLS = "";
 
+// DOMContentLoaded = loads JSON files and initializes UI
 document.addEventListener("DOMContentLoaded", async () => {
     try {
+        // 
         // UI init
         setupRegionDropdowns();
     } catch (error) {
