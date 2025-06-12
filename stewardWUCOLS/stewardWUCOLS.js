@@ -1,13 +1,13 @@
-let inventory = [];
-let careGuide = [];
-let regionWUCOLS = "";
+let inventory       = [];
+let careGuide       = [];
+let regionWUCOLS    = "";
 
 // DOMContentLoaded = loads JSON files and initializes UI
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         // fetch JSON and populate inventory and careGuide
-        inventory = await fetch("plant-inventory.json"),then(r => r.json());
-        careGuide = await fetch("plant_care_guide.json"),then(r => r.json());
+        inventory = await fetch("plant_inventory.json").then(r => r.json());
+        careGuide = await fetch("plant_care_guide.json").then(r => r.json());
         
         // UI init & call setup functions
         setupRegionDropdowns(); // WUCOLS region selection
@@ -124,25 +124,40 @@ function setupRegionDropdowns() {
     });
 };
 
+// create a button for each plant entry in inventory
 function renderPlantButtons() {
     const list = document.getElementById("plant-list");
+
+    // clean slate of prev buttons
+    list.innerHTML = "";
+
     inventory.forEach(inst => {
         const btn = document.createElement("button");
-        btn.className = "plant-button";
-        btn.textContent = inst.nickname || inst.instance_id;
-        btn.dataset.instanceId = inst.instance_id;
+        btn.className           = "plant-button";
+    btn.textContent             = inst.nickname || inst.instance_id;
+        btn.dataset.instanceId  = inst.instance_id;
 
         // when clicked, show relevant plant care info:
-        btn.addEventListener("click", () => showPlantInfo(inst.instance_id));
-
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".plant-button").forEach(b =>b.classList.remove("selected"));
+            btn.classList.add("selected");
+        showPlantInfo(inst.instance_id);
+    });
         list.appendChild(btn);
     });
-};
+}
 
+// display care info for clicked plant entry (incl water use based on WUCOLS region)
 function showPlantInfo (instanceId) {
-    const inst = inventory.find(p => p.instance_id === instanceId);
+    const inst  = inventory.find(p => p.instance_id === instanceId);
     const guide = careGuide.find(g => g.plant_id === inst.plant_id);
-    const info = document.getElementById("plant-info");
+    const info  = document.getElementById("plant-info");
+
+    // validation of care guide info
+    if (!guide) {
+        info.innerHTML = `<p>No care guide found for ${instanceId}.</p>`;
+        return;
+    }
 
     // pull water use based on regionWUCOLS
     const waterUse = (regionWUCOLS && guide.wucols_water_use) // NEED TO CHECK IF THIS MATCHES WUCOLS water use fields in careguide
