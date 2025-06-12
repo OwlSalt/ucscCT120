@@ -160,8 +160,8 @@ function showPlantInfo (instanceId) {
     }
 
     // pull water use based on regionWUCOLS
-    const waterUse = (regionWUCOLS && guide.wucols_water_use) // NEED TO CHECK IF THIS MATCHES WUCOLS water use fields in careguide
-    ? guide.wucols_water_use[regionWUCOLS] || "N/A"
+    const waterUse = regionWUCOLS // NEED TO CHECK IF THIS MATCHES WUCOLS water use fields in careguide
+    ? guide[regionWUCOLS] || "N/A"
     : "Select a region first";
 
     info.innerHTML = `
@@ -171,5 +171,4 @@ function showPlantInfo (instanceId) {
     <p>Water in Region ${regionWUCOLS.slice(-1)}: ${waterUse}</p>
     <p>Notes: ${guide.notes || "no notes"}</p>
     `;
-
 }
