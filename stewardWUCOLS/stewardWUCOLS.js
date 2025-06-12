@@ -140,7 +140,7 @@ function renderPlantButtons() {
         // when clicked, show relevant plant care info:
         btn.addEventListener("click", () => {
             // holster the region in a URL
-            const url = new URL("plant.html", window.location.origin);
+            const url = new URL("stewardWUCOLS/plant.html", window.location.origin);
             url.searchParams.set("instanceId", inst.instance_id);
             if (regionWUCOLS) url.searchParams.set("region", regionWUCOLS);
 
