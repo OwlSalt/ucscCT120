@@ -1,17 +1,23 @@
 let inventory = [];
-let careGuides = [];
+let careGuide = [];
 let regionWUCOLS = "";
 
 // DOMContentLoaded = loads JSON files and initializes UI
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        // 
-        // UI init
-        setupRegionDropdowns();
+        // fetch JSON and populate inventory and careGuide
+        inventory = await fetch("plant-inventory.json"),then(r => r.json());
+        careGuide = await fetch("plant_care_guide.json"),then(r => r.json());
+        
+        // UI init & call setup functions
+        setupRegionDropdowns(); // WUCOLS region selection
+        renderPlantButtons(); // plant buttons generated
+
     } catch (error) {
         console.error("Error loading data:", error); // console log notice error
         };
     });
+    
 // Setup WUCOLS region dropdown -- FIXED the logic errors
 function setupRegionDropdowns() {
     const selectRegions = document.querySelectorAll(".select-region");
