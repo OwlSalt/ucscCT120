@@ -12,12 +12,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         // UI init & call setup functions
         setupRegionDropdowns(); // WUCOLS region selection
         renderPlantButtons(); // plant buttons generated
+            const params        = new URLSearchParams(window.location.search);
+            const instanceId    = params.get("instanceId");
+            const regionKey     = params.get("region");
 
-    } catch (error) {
-        console.error("Error loading data:", error); // console log notice error
-        };
-    });
+            if (regionKey) regionWUCOLS = regionKey;
 
+            // call showPlantInfo
+            if (instanceId) {
+                const plantList = document.getElementById("plant-list");
+                if (plantList) plantList.style.display = "none";
+                const regionSelector = document.querySelector(".select-region");
+                if (regionSelector) regionSelector.style.display = "none";
+
+                //show plant details with loaded data
+                showPlantInfo(instanceId);
+            }
+            } catch (err) {
+                    console.error("Error loading data", err);
+                }
+
+        }); 
 // Setup WUCOLS region dropdown -- FIXED the logic errors
 function setupRegionDropdowns() {
     const selectRegions = document.querySelectorAll(".select-region");
@@ -178,7 +193,7 @@ function showPlantInfo (instanceId) {
         lightCare += `Best in ${best.join(", ")}`;
     }
     if (tolerates.length) {
-        if(lightCare) lightCare +=", ";
+        if(lightCare) lightCare += ", ";
             lightCare += `tolerates ${tolerates.join(", ")}`;
     }
     if (!lightCare) {

@@ -7,33 +7,15 @@
     <link rel="stylesheet" href="styleWUCOLS.css" />
 </head>
 <body>
-    <button class="plant-button"
-        id="back-button"> BACK to plant list</button>
+    <button id="back-button" class="plant-button"> BACK to plant list</button>
     <div id="plant-info"></div>
 
     <script src="stewardWUCOLS.js"></script>
     <script>
-        const params        = new URLSearchParams(window.location.search);
-        const instanceId    = params.get("instanceId");
-        const regionKey     = params.get("region");
-
-        regionWUCOLS = regionKey || "";
-
-        // call showPlantInfo
-        if (instanceId) {
-            showPlantInfo(instanceId);
-        }
-
-        if (!instanceId) {
-            document.getElementById("plant-info").innerHTML = 
-            "<p>WHOOPS - No plant specified. Go back to Plant List and try again.</p>"
-        } 
-
         document.getElementById("back-button").addEventListener("click", () => {
             // return to index.html
             window.location.href = "/stewardWUCOLS/index.html";
         });
     </script>
-
 </body>
 </html>
