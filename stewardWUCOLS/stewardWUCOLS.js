@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error loading data:", error); // console log notice error
         };
     });
-    
+
 // Setup WUCOLS region dropdown -- FIXED the logic errors
 function setupRegionDropdowns() {
     const selectRegions = document.querySelectorAll(".select-region");
@@ -54,8 +54,8 @@ function setupRegionDropdowns() {
                 }
             });
         };
-
-        const handleOptionSelect = (option) => {
+        // applies selected WUCOLS region to set regionWUCOLS var 
+        const handleOptionSelect = (option) => { 
             const value = option.dataset.value;
 
             // clear prev selected class from the list
@@ -122,4 +122,39 @@ function setupRegionDropdowns() {
             }
         });
     });
+};
+
+function renderPlantButtons() {
+    const list = document.getElementById("plant-list");
+    inventory.forEach(inst => {
+        const btn = document.createElement("button");
+        btn.className = "plant-button";
+        btn.textContent = inst.nickname || inst.instance_id;
+        btn.dataset.instanceId = inst.instance_id;
+
+        // when clicked, show relevant plant care info:
+        btn.addEventListener("click", () => showPlantInfo(inst.instance_id));
+
+        list.appendChild(btn);
+    });
+};
+
+function showPlantInfo (instanceId) {
+    const inst = inventory.find(p => p.instance_id === instanceId);
+    const guide = careGuide.find(g => g.plant_id === inst.plant_id);
+    const info = document.getElementById("plant-info");
+
+    // pull water use based on regionWUCOLS
+    const waterUse = (regionWUCOLS && guide.wucols_water_use) // NEED TO CHECK IF THIS MATCHES WUCOLS water use fields in careguide
+    ? guide.wucols_water_use[regionWUCOLS] || "N/A"
+    : "Select a region first";
+
+    info.innerHTML = `
+    <h2>${inst.nickname || inst.instance_id}</h2>
+    <p>Botanical: $guide.botanical_name}</p>
+    <p>Light Req: ${guide.light_req.join(", ")}</p>
+    <p>Water in Region ${regionWUCOLS.slice(-1)}: ${waterUse}</p>
+    <p>Notes: ${guide.notes || "no notes"}</p>
+    `;
+
 }
