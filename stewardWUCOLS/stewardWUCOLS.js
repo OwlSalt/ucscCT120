@@ -139,9 +139,12 @@ function renderPlantButtons() {
 
         // when clicked, show relevant plant care info:
         btn.addEventListener("click", () => {
-            document.querySelectorAll(".plant-button").forEach(b =>b.classList.remove("selected"));
-            btn.classList.add("selected");
-        showPlantInfo(inst.instance_id);
+            // holster the region in a URL
+            const url = new URL("plant.html", window.location.origin);
+            url.searchParams.set("instanceId", inst.instance_id);
+            if (regionWUCOLS) url.searchParams.set("region", regionWUCOLS);
+
+            window.location.href=url;
     });
         list.appendChild(btn);
     });

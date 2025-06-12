@@ -4,10 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steward - Plant Detail</title>
-    link rel="stylesheet" href=styleWUCOLS.css" />
+    <link rel="stylesheet" href="styleWUCOLS.css" />
 </head>
 <body>
-    <button id="back-button"> BACK to plant list</button>
+    <button class="plant-button"
+        id="back-button"> BACK to plant list</button>
     <div id="plant-info"></div>
+
+    <script src="stewardWUCOLS.js"></script>
+    <script>
+        // check instanceId and region from source URL
+        const params = new URLSearchParams(window.location.search);
+        const instanceId = params.get("instanceId");
+        const regionKey = params.get("region");
+
+        if (!instanceId) {
+            document.getElementbyId("plant-info").innerHTML = 
+            "<p>WHOOPS - No plant specified. Go back to Plant List and try again.</p>"
+        } else {
+            // define & store regionWUCOLS globally before rendering info
+            if (regionKey) regionWUCOLS = regionKey;
+            showPlantInfo(instanceId);
+        }
+
+        document.getElementById("back-button").addEventListener("click", () => {
+            // return to index.html
+            window.location.href = "index.html";
+        });
+    </script>
+
 </body>
 </html>
