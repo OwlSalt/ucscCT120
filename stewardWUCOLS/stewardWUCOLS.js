@@ -149,16 +149,21 @@ function renderPlantButtons() {
 
 // display care info for clicked plant entry (incl water use based on WUCOLS region)
 function showPlantInfo (instanceId) {
+    console.log("showPlantInfo called with", instanceId);
     const inst  = inventory.find(p => p.instance_id === instanceId);
+    console.log(" inst ->", inst);
     const guide = careGuide.find(g => g.plant_id === inst.plant_id);
-    const info  = document.getElementById("plant-info");
+    console.log(" guide ->", guide);
 
+    const info  = document.getElementById("plant-info");
     // validation of care guide info
     if (!guide) {
-        info.innerHTML = `<p>No care guide found for ${instanceId}.</p>`;
-        return;
+        return info.innerHTML = `<p>No care guide found for ${instanceId}.</p>`;
     }
-
+    // light req csv to array parse
+    const light = guide.light_req
+        ? guide.light_req.split(";").map(s => s.trim())
+        : [];
     // pull water use based on regionWUCOLS
     const waterUse = regionWUCOLS // NEED TO CHECK IF THIS MATCHES WUCOLS water use fields in careguide
     ? guide[regionWUCOLS] || "N/A"
@@ -166,8 +171,8 @@ function showPlantInfo (instanceId) {
 
     info.innerHTML = `
     <h2>${inst.nickname || inst.instance_id}</h2>
-    <p>Botanical: $guide.botanical_name}</p>
-    <p>Light Req: ${guide.light_req.join(", ")}</p>
+    <p>Botanical: ${guide.botanical_name}</p>
+    <p>Light Req: ${light}</p>
     <p>Water in Region ${regionWUCOLS.slice(-1)}: ${waterUse}</p>
     <p>Notes: ${guide.notes || "no notes"}</p>
     `;
