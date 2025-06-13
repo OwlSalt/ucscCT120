@@ -26,9 +26,7 @@ main {
     color: var(--main-soil-color);
 }
 body {
-    background-color: var(--main-blanch-color);
     padding: 0 12px; /* l&r gutters */
-    
     text-align: left;
     color: var(--main-soil-color);
     box-sizing: border-box;
