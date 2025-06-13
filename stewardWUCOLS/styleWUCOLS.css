@@ -85,9 +85,9 @@ li {
     cursor: pointer;
 }
 .arrow {
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 8px solid var(--main-green-color);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--main-green-color);
     transition: transform ease-in-out 0.3s;
 }
 .region-dropdown {
