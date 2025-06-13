@@ -152,6 +152,11 @@ li {
 .region-button[aria-expanded="true"] .arrow {
     transform: rotate(180deg);
 }
+.text-block {
+    width: 85%;
+    max-width: 95%; 
+    margin: 0 auto;
+}
 .plant-button {
     display: block;
     margin: 1rem auto;
