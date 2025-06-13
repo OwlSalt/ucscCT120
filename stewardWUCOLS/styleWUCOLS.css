@@ -60,9 +60,10 @@ li {
     font-weight: bold;    
 }
 .select-region {
-    margin-top: 3rem;
-    position: relative;
     display: inline-block;
+    margin: 0.5rem auto;
+    position: relative;
+
     width: max-content;
     max-width: 95%;
 }
@@ -163,7 +164,8 @@ li {
     text-align: left;
 }
 .plant-button {
-    margin: auto;
+    display: block;
+    margin: 1rem auto;
     max-width: 95%;
     background-color: var(--main-green-color); /* MELON RIND */
     align-items: center;
@@ -189,7 +191,7 @@ li {
 }
 
 #plant-info h2 {
-    text-align: left;
+    text-align: center;
     margin-bottom: 3px;
 }
 
