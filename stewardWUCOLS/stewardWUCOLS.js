@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error loading data", err);
   }
 });
-
 // Setup WUCOLS region dropdown -- FIXED the logic errors
 function setupRegionDropdowns() {
   const wrappers = document.querySelectorAll(".select-region");
@@ -54,78 +53,112 @@ function setupRegionDropdowns() {
     const options       = dropdown.querySelectorAll("li");
     const selectedValue = selectButton.querySelector(".selected-value");
 
-    // use saved regionWUCOLS stored locally:
-    if (regionWUCOLS) {
-      const sel = dropdown.querySelector(`li[data-value="${regionWUCOLS}"]`);
-      if (sel) {
-        sel.classList.add("selected");
-        selectedValue.textContent = sel.textContent.trim();
-      }
-    }
 
-    let focusedIndex = -1;
-    const toggleDropdown = (open = null) => {
-      const isOpen = open !== null ? open : !dropdown.classList.contains("hidden");
-      dropdown.classList.toggle("hidden", !isOpen);
-      selectButton.setAttribute("aria-expanded", isOpen);
-      if (isOpen) {
-        focusedIndex = [...options].findIndex(o => o.classList.contains("selected"));
-        focusedIndex = focusedIndex < 0 ? 0 : focusedIndex;
-        options[focusedIndex].focus();
-      } else {
-        focusedIndex = -1;
-        selectButton.focus();
-      }
-    };
+            if(regionWUCOLS) {
+                const sel = dropdown.querySelector(`li[data-value="${regionWUCOLS}"]`);
+                if (sel) {
+                    sel.classList.add("selected");
+                    selectedValue.textContent = sel.textContent.trim();
+                  // document.getElementById("selected-region-display").textContent = `Selected Region: ${regionWUCOLS}`;
+                }
+            }
+        
+        let focusedIndex = -1;
 
-    const updateFocus = () => {
-      options.forEach((opt, i) => {
-        opt.setAttribute("tabindex", i === focusedIndex ? "0" : "-1");
-        if (i === focusedIndex) opt.focus();
-      });
-    };
+        const toggleDropdown = (expand = null) => {
+            const isOpen = expand !== null ? expand : dropdown.classList.contains("hidden");
+            dropdown.classList.toggle("hidden", !isOpen);
+            selectButton.setAttribute("aria-expanded", isOpen);
 
-    const handleOptionSelect = opt => {
-      const v = opt.dataset.value;
-      options.forEach(o => o.classList.remove("selected"));
-      if (v === "clear") {
-        regionWUCOLS = "";
-        localStorage.removeItem("regionWUCOLS");
-        selectedValue.textContent = "FIRST: Select WUCOLS Region";
-        return;
-      }
-      regionWUCOLS = v;
-      localStorage.setItem("regionWUCOLS", v);
-      opt.classList.add("selected");
-      selectedValue.textContent = opt.textContent.trim();
-    };
+            if (isOpen) {
+                focusedIndex = [...options].findIndex((option) =>
+                    option.classList.contains("selected"));
+                focusedIndex = focusedIndex === -1 ? 0 : focusedIndex;
+                updateFocus();
+            } else {
+                focusedIndex = -1;
+                selectButton.focus();
+            }
+        };
 
-    selectButton.addEventListener("click",  () => toggleDropdown());
-    selectButton.addEventListener("keydown", e => {
-      if (e.key === "ArrowDown") { e.preventDefault(); toggleDropdown(true);  }
-      if (e.key === "Escape")    { e.preventDefault(); toggleDropdown(false); }
+        const updateFocus = () => {
+            options.forEach((option, index) => {
+                if (option) {
+                    option.setAttribute("tabindex", index === focusedIndex ? "0" : "-1");
+                    if (index === focusedIndex) option.focus();
+                }
+            });
+        };
+        // applies selected WUCOLS region to set regionWUCOLS var 
+        const handleOptionSelect = (option) => { 
+            const value = option.dataset.value;
+
+            // clear prev selected class from the list
+            options.forEach(o => o.classList.remove("selected"));
+
+            if (value === "clear") {
+                regionWUCOLS = "";
+                localStorage.removeItem("regionWUCOLS");
+                selectedValue.textContent = "FIRST: Select WUCOLS Region";
+                document.getElementById("selected-region-display").textContent = "No region selected";
+                options.forEach((opt) => opt.classList.remove("selected"));
+                return;
+            }
+
+            regionWUCOLS = value;
+            localStorage.setItem("regionWUCOLS", regionWUCOLS);
+
+            // update UI with region info
+            option.classList.add("selected");
+            selectedValue.textContent = option.textContent.trim();
+        };
+
+        options.forEach(opt => 
+            opt.addEventListener("click", () => {
+                handleOptionSelect(opt);
+                toggleDropdown(false);
+            })
+        );
+
+            selectButton.addEventListener("click", () => {
+                toggleDropdown();
+
+
+            selectButton.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowDown") {
+                    event.preventDefault();
+                    toggleDropdown(true);
+                } else if (event.key === "Escape") {
+                    toggleDropdown(false);
+                }
+            });
+
+            dropdown.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowDown") {
+                    event.preventDefault();
+                    focusedIndex = (focusedIndex + 1) % options.length;
+                    updateFocus();
+                } else if (event.key === "ArrowUp") {
+                    event.preventDefault();
+                    focusedIndex = (focusedIndex - 1 + options.length) % options.length;
+                    updateFocus();
+                } else if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    handleOptionSelect(options[focusedIndex]);
+                    toggleDropdown(false);
+                } else if (event.key === "Escape") {
+                    toggleDropdown(false);
+                }
+            });
+
+            document.addEventListener("click", (event) => {
+                const isOutsideClick = !wrapper.contains(event.target);
+                if (isOutsideClick) {
+                    toggleDropdown(false);
+                });
+            });
+        }
     });
-
-    dropdown.addEventListener("keydown", e => {
-      if      (e.key === "ArrowDown") { e.preventDefault(); focusedIndex = (focusedIndex+1)%options.length; updateFocus(); }
-      else if (e.key === "ArrowUp")   { e.preventDefault(); focusedIndex = (focusedIndex-1+options.length)%options.length; updateFocus(); }
-      else if (["Enter"," "].includes(e.key)) { e.preventDefault(); handleOptionSelect(options[focusedIndex]); toggleDropdown(false); }
-      else if (e.key === "Escape")    { e.preventDefault(); toggleDropdown(false); }
-    });
-
-    document.addEventListener("click", e => {
-      if (!wrapper.contains(e.target)) toggleDropdown(false);
-    });
-
-    options.forEach(opt =>
-      opt.addEventListener("click", () => {
-        handleOptionSelect(opt);
-        toggleDropdown(false);
-      })
-    );
-
-  }); 
-}   
 // create a button for each plant entry in inventory
 function renderPlantButtons() {
     const list = document.getElementById("plant-list");
