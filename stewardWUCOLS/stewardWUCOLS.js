@@ -122,6 +122,7 @@ function setupRegionDropdowns() {
 
             selectButton.addEventListener("click", () => {
                 toggleDropdown();
+            });
 
 
             selectButton.addEventListener("keydown", (event) => {
@@ -155,10 +156,9 @@ function setupRegionDropdowns() {
                 const isOutsideClick = !wrapper.contains(event.target);
                 if (isOutsideClick) {
                     toggleDropdown(false);
-                });
+                }
             });
-        }
-    });
+        });
 // create a button for each plant entry in inventory
 function renderPlantButtons() {
     const list = document.getElementById("plant-list");
@@ -232,4 +232,4 @@ function showPlantInfo (instanceId) {
     <p>Light Needs: ${lightCare}</p>
     <p>Water Needs: ${waterUse}</p>
     <p>Notes: ${guide.notes || "no notes"}</p>
-    `}
+    `}}
