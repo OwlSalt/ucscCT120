@@ -119,7 +119,7 @@ li {
 .region-dropdown li {
     padding: 10px;
     font-size: small;
-    font-weight: normal;
+    font-weight: 600;
     color: var(--main-blanch-color);
     cursor: pointer;
     display: flex ;
@@ -134,11 +134,11 @@ li {
     color: var(--main-blanch-color);
     font-weight: bold;
     border-radius: 4px;
-    transition: background-color 0.2s ease;
+    transition: var(--main-blanch-color) 0.2s ease;
 }
 .region-dropdown li:hover,
 .region-dropdown li:focus {
-    background-color: var(--main-soil-color);
+    background-color: var(--main-melon-color);
     border-radius: 4px;
 }
 .region-dropdown li.selected:hover,
