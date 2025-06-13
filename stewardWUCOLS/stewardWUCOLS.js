@@ -159,6 +159,7 @@ function setupRegionDropdowns() {
                 }
             });
         });
+    }
 // create a button for each plant entry in inventory
 function renderPlantButtons() {
     const list = document.getElementById("plant-list");
@@ -232,4 +233,4 @@ function showPlantInfo (instanceId) {
     <p>Light Needs: ${lightCare}</p>
     <p>Water Needs: ${waterUse}</p>
     <p>Notes: ${guide.notes || "no notes"}</p>
-    `}}
+    `}
