@@ -25,9 +25,10 @@ body {
 }
 h1 {
     font-family:cursive;
-    font-size-adjust: 0.75;
+    font-size-adjust: 1.3;
     text-align: center;
     font-weight: bolder;
+    line-height: 3;
     color: var(--main-melon-color);
     text-shadow: 
     .4px .4px 3px whitesmoke, 
