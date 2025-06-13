@@ -21,7 +21,6 @@ body {
     color: var(--main-soil-color);
     box-sizing: border-box;
     font-weight:bold;
-    max-width: 100%;
 }
 h1 {
     font-family:cursive;
