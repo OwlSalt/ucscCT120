@@ -53,10 +53,9 @@ li {
     font-weight: bold;    
 }
 .select-region {
-    display: inline-block;
-    margin: 0.5rem auto;
+    display: block;
+    margin: 1rem auto;
     position: relative;
-
     width: max-content;
     max-width: 95%;
 }
