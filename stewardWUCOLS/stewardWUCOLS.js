@@ -100,7 +100,7 @@ function setupRegionDropdowns() {
                 regionWUCOLS = "";
                 localStorage.removeItem("regionWUCOLS");
                 selectedValue.textContent = "FIRST: Select WUCOLS Region";
-                document.getElementById("selected-region-display").textContent = "No region selected";
+                //document.getElementById("selected-region-display").textContent = "No region selected";
                 options.forEach((opt) => opt.classList.remove("selected"));
                 return;
             }
