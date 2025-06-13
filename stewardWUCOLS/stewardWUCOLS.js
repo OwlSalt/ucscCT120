@@ -53,7 +53,6 @@ function setupRegionDropdowns() {
     const options       = dropdown.querySelectorAll("li");
     const selectedValue = selectButton.querySelector(".selected-value");
 
-
             if(regionWUCOLS) {
                 const sel = dropdown.querySelector(`li[data-value="${regionWUCOLS}"]`);
                 if (sel) {
@@ -62,14 +61,11 @@ function setupRegionDropdowns() {
                   // document.getElementById("selected-region-display").textContent = `Selected Region: ${regionWUCOLS}`;
                 }
             }
-        
         let focusedIndex = -1;
-
         const toggleDropdown = (expand = null) => {
             const isOpen = expand !== null ? expand : dropdown.classList.contains("hidden");
             dropdown.classList.toggle("hidden", !isOpen);
             selectButton.setAttribute("aria-expanded", isOpen);
-
             if (isOpen) {
                 focusedIndex = [...options].findIndex((option) =>
                     option.classList.contains("selected"));
@@ -80,7 +76,6 @@ function setupRegionDropdowns() {
                 selectButton.focus();
             }
         };
-
         const updateFocus = () => {
             options.forEach((option, index) => {
                 if (option) {
@@ -104,7 +99,6 @@ function setupRegionDropdowns() {
                 options.forEach((opt) => opt.classList.remove("selected"));
                 return;
             }
-
             regionWUCOLS = value;
             localStorage.setItem("regionWUCOLS", regionWUCOLS);
 
@@ -112,19 +106,15 @@ function setupRegionDropdowns() {
             option.classList.add("selected");
             selectedValue.textContent = option.textContent.trim();
         };
-
         options.forEach(opt => 
             opt.addEventListener("click", () => {
                 handleOptionSelect(opt);
                 toggleDropdown(false);
             })
         );
-
             selectButton.addEventListener("click", () => {
                 toggleDropdown();
             });
-
-
             selectButton.addEventListener("keydown", (event) => {
                 if (event.key === "ArrowDown") {
                     event.preventDefault();
@@ -133,7 +123,6 @@ function setupRegionDropdowns() {
                     toggleDropdown(false);
                 }
             });
-
             dropdown.addEventListener("keydown", (event) => {
                 if (event.key === "ArrowDown") {
                     event.preventDefault();
@@ -151,7 +140,6 @@ function setupRegionDropdowns() {
                     toggleDropdown(false);
                 }
             });
-
             document.addEventListener("click", (event) => {
                 const isOutsideClick = !wrapper.contains(event.target);
                 if (isOutsideClick) {
@@ -220,14 +208,11 @@ function showPlantInfo (instanceId) {
     if (!lightCare) {
         lightCare = "No light requirement data";
     }
-
     // pull water use based on regionWUCOLS
     const waterUse = regionWUCOLS
     ? guide[regionWUCOLS] || "N/A"
     : "Select a region first";
-
     info.innerHTML = `
-    
     <p>Species: ${guide.botanical_name}</p>
     <h2>${inst.nickname || inst.instance_id}</h2>
     <p>Light Needs: ${lightCare}</p>
