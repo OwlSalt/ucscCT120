@@ -28,7 +28,7 @@ h1 {
     text-align: center;
     font-weight: bolder;
     color: var(--main-melon-color);
-    text-shadow: .4px .4px 3px var(--main-blanch-color), 0 0 50px var whitesmoke, 2px 2px 13px var(--main-green-color), 0 0 4px var(--main-blanch-color), 6px 8px 14px var(--main-soil-color);
+    text-shadow: .4px .4px 3px whitesmoke, 0 0 50px var whitesmoke, 2px 2px 13px var(--main-green-color), 0 0 4px var(--main-blanch-color), 6px 8px 14px var(--main-soil-color);
 }
 h2 {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
