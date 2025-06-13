@@ -54,7 +54,7 @@ function setupRegionDropdowns() {
     const options       = dropdown.querySelectorAll("li");
     const selectedValue = selectButton.querySelector(".selected-value");
 
-    // Pre-select saved region:
+    // use saved regionWUCOLS stored locally:
     if (regionWUCOLS) {
       const sel = dropdown.querySelector(`li[data-value="${regionWUCOLS}"]`);
       if (sel) {
@@ -62,7 +62,6 @@ function setupRegionDropdowns() {
         selectedValue.textContent = sel.textContent.trim();
       }
     }
-
 
     let focusedIndex = -1;
     const toggleDropdown = (open = null) => {
@@ -101,7 +100,6 @@ function setupRegionDropdowns() {
       selectedValue.textContent = opt.textContent.trim();
     };
 
-    // ——— All listeners go inside this block ———
     selectButton.addEventListener("click",  () => toggleDropdown());
     selectButton.addEventListener("keydown", e => {
       if (e.key === "ArrowDown") { e.preventDefault(); toggleDropdown(true);  }
@@ -125,9 +123,9 @@ function setupRegionDropdowns() {
         toggleDropdown(false);
       })
     );
-    // ————————————————————————————
-  }); // ← correctly closes wrappers.forEach
-}   // ← correctly closes setupRegionDropdowns
+
+  }); 
+}   
 // create a button for each plant entry in inventory
 function renderPlantButtons() {
     const list = document.getElementById("plant-list");
