@@ -4,8 +4,7 @@
     --main-green-color: #575e08; /* #94a00e MELON RINDS */
     --main-soil-color: #5A3820; /* #5e3b22 ALMOND SKINS */
     --main-compost-color: #382819; /* #3f2d1c RICH COMPOST */
-    html, body {
-        max-width: 420px;
+    html, body {        
         height: 100%;
         margin: 0;
         padding: 0;
@@ -15,10 +14,9 @@
 
 main {
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-left: 12px;
-    margin-right: 12px;
-    margin-top: 12px;
-    margin-bottom: auto;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 0 12px;
     text-align: left;
     color: var(--main-soil-color);
 }
