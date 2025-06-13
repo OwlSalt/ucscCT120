@@ -4,43 +4,66 @@ let regionWUCOLS    = "";
 
 // DOMContentLoaded = loads JSON files and initializes UI
 document.addEventListener("DOMContentLoaded", async () => {
-    try {
-        // fetch JSON and populate inventory and careGuide
-        inventory = await fetch("plant_inventory.json").then(r => r.json());
-        careGuide = await fetch("plant_care_guide.json").then(r => r.json());
-        
-        // UI init & call setup functions
-        setupRegionDropdowns(); // WUCOLS region selection
-        renderPlantButtons(); // plant buttons generated
-            const params        = new URLSearchParams(window.location.search);
-            const instanceId    = params.get("instanceId");
-            const regionKey     = params.get("region");
+  try {
+    // 1) Load data
+    inventory = await fetch("plant_inventory.json").then(r => r.json());
+    careGuide = await fetch("plant_care_guide.json").then(r => r.json());
 
-            if (regionKey) regionWUCOLS = regionKey;
+    // 2) Restore from localStorage
+    const saved = localStorage.getItem("regionWUCOLS");
+    if (saved) regionWUCOLS = saved;
 
-            // call showPlantInfo
-            if (instanceId) {
-                const plantList = document.getElementById("plant-list");
-                if (plantList) plantList.style.display = "none";
-                const regionSelector = document.querySelector(".select-region");
-                if (regionSelector) regionSelector.style.display = "none";
+    // 3) Parse URL params
+    const params     = new URLSearchParams(window.location.search);
+    const instanceId = params.get("instanceId");
+    const regionKey  = params.get("region");
+    if (regionKey) {
+      regionWUCOLS = regionKey;
+      localStorage.setItem("regionWUCOLS", regionWUCOLS);
+    }
 
-                //show plant details with loaded data
-                showPlantInfo(instanceId);
-            }
-            } catch (err) {
-                    console.error("Error loading data", err);
+    // 4) If on the *index* page, build its UI
+    if (document.getElementById("plant-list")) {
+      setupRegionDropdowns();
+      renderPlantButtons();
+    }
+
+    // 5) on the *detail* page, hide list UI and show info
+    if (document.getElementById("plant-info") && instanceId) {
+      // hide list and dropdown if they exist (they won’t on plant.html)
+      document.getElementById("plant-list")?.style &&
+        (document.getElementById("plant-list").style.display = "none");
+      document.querySelector(".select-region")?.style &&
+        (document.querySelector(".select-region").style.display = "none");
+
+      // now that data and regionWUCOLS are set, render the detail
+      showPlantInfo(instanceId);
+    }
+
+  } catch (err) {
+    console.error("Error loading data", err);
+  }
+});
+
+    // Setup WUCOLS region dropdown -- FIXED the logic errors
+    function setupRegionDropdowns() {
+        const wrappers = document.querySelectorAll(".select-region");
+        wrappers.forEach(wrapper => {
+            const selectButton = wrapper.querySelector(".region-button");
+            const dropdown = wrapper.querySelector(".region-dropdown");
+            const options = dropdown.querySelectorAll("li");
+            const selectedValue = selectButton.querySelector(".selected-value");
+
+            if(regionWUCOLS) {
+                const sel = dropdown.querySelector(`li[data-value="${regionWUCOLS}"]`);
+                if (sel) {
+                    sel.classList.add("selected");
+                    selectedValue.textContent = sel.textContent.trim();
+                  // document.getElementById("selected-region-display").textContent = `Selected Region: ${regionWUCOLS}`;
                 }
+            }
+        
 
-        }); 
-// Setup WUCOLS region dropdown -- FIXED the logic errors
-function setupRegionDropdowns() {
-    const selectRegions = document.querySelectorAll(".select-region");
-    selectRegions.forEach((selectRegion) => {
-        const selectButton = selectRegion.querySelector(".region-button");
-        const dropdown = selectRegion.querySelector(".region-dropdown");
-        const options = dropdown.querySelectorAll("li");
-        const selectedValue = selectButton.querySelector(".selected-value");
 
         let focusedIndex = -1;
 
@@ -51,8 +74,7 @@ function setupRegionDropdowns() {
 
             if (isOpen) {
                 focusedIndex = [...options].findIndex((option) =>
-                    option.classList.contains("selected")
-                );
+                    option.classList.contains("selected"));
                 focusedIndex = focusedIndex === -1 ? 0 : focusedIndex;
                 updateFocus();
             } else {
@@ -74,10 +96,11 @@ function setupRegionDropdowns() {
             const value = option.dataset.value;
 
             // clear prev selected class from the list
-            options.forEach((opt) => opt.classList.remove("selected"));
+            options.forEach(o => o.classList.remove("selected"));
 
             if (value === "clear") {
                 regionWUCOLS = "";
+                localStorage.removeItem("regionWUCOLS");
                 selectedValue.textContent = "FIRST: Select WUCOLS Region";
                 document.getElementById("selected-region-display").textContent = "No region selected";
                 options.forEach((opt) => opt.classList.remove("selected"));
@@ -85,20 +108,23 @@ function setupRegionDropdowns() {
             }
 
             regionWUCOLS = value;
+            localStorage.setItem("regionWUCOLS", regionWUCOLS);
+
+            // update UI with region info
+            option.classList.add("selected");
             selectedValue.textContent = option.textContent.trim();
             document.getElementById("selected-region-display").textContent = 
-                regionWUCOLS ? `Selected Region: ${regionWUCOLS}` : "No region selected";
-
-            option.classList.add("selected");
+                `Selected Region: ${regionWUCOLS}`
         };
 
-        options.forEach((option) => {
-            option.addEventListener("click", () => {
-                handleOptionSelect(option);
+        options.forEach(opt => 
+            opt.addEventListener("click", () => {
+                handleOptionSelect(opt);
                 toggleDropdown(false);
-            });
-        });
-
+            })
+        );
+    });
+}
         selectButton.addEventListener("click", () => {
             toggleDropdown();
         });
@@ -136,8 +162,7 @@ function setupRegionDropdowns() {
                 toggleDropdown(false);
             }
         });
-    });
-};
+    
 
 // create a button for each plant entry in inventory
 function renderPlantButtons() {
@@ -207,9 +232,8 @@ function showPlantInfo (instanceId) {
 
     info.innerHTML = `
     <h2>${inst.nickname || inst.instance_id}</h2>
-    <p>Botanical: ${guide.botanical_name}</p>
-    <p>Light Req: ${lightCare}</p>
-    <p>Water in Region ${regionWUCOLS.slice(-1)}: ${waterUse}</p>
-    <p>Notes: ${guide.notes || "no notes"}</p>
-    `;
-}
+    <h3><strong>Botanical:${guide.botanical_name}</strong> </h3>
+    <p><strong>Light Req:</strong> ${lightCare}</p>
+    <p><strong>Water Requirements</strong> (Reg.${regionWUCOLS.slice(-1)}): ${waterUse}</p>
+    <p><strong>Notes:</strong> ${guide.notes || "no notes"}</p>
+    `}
