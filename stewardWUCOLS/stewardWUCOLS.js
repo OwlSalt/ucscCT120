@@ -231,9 +231,10 @@ function showPlantInfo (instanceId) {
     : "Select a region first";
 
     info.innerHTML = `
+    
+    <p>Species: ${guide.botanical_name}\</p>
     <h2>${inst.nickname || inst.instance_id}</h2>
-    <h3><strong>Botanical:${guide.botanical_name}</strong> </h3>
-    <p><strong>Light Req:</strong> ${lightCare}</p>
-    <p><strong>Water Requirements</strong> (Reg.${regionWUCOLS.slice(-1)}): ${waterUse}</p>
-    <p><strong>Notes:</strong> ${guide.notes || "no notes"}</p>
+    <p>Light Needs: ${lightCare}</p>
+    <p>Water Needs: ${waterUse}</p>
+    <p>Notes: ${guide.notes || "no notes"}</p>
     `}
