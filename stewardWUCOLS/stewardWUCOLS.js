@@ -232,7 +232,7 @@ function showPlantInfo (instanceId) {
 
     info.innerHTML = `
     
-    <p>Species: ${guide.botanical_name}\</p>
+    <p>Species: ${guide.botanical_name}</p>
     <h2>${inst.nickname || inst.instance_id}</h2>
     <p>Light Needs: ${lightCare}</p>
     <p>Water Needs: ${waterUse}</p>
