@@ -4,6 +4,12 @@
     --main-green-color: #575e08; /* #94a00e MELON RINDS */
     --main-soil-color: #5A3820; /* #5e3b22 ALMOND SKINS */
     --main-compost-color: #382819; /* #3f2d1c RICH COMPOST */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: var(--main-blanch-color)
+    }
 }
 * {
     box-sizing: border-box;
